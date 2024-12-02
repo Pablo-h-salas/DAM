@@ -1,9 +1,10 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
 import { Observable, Subscription, fromEvent, interval } from 'rxjs';
 import { DispositivoService } from '../services/dispositivo.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-dispositivo',
@@ -20,7 +21,9 @@ export class DispositivoPage implements OnInit, OnDestroy {
 
   mouseMove$ = fromEvent(document, 'mousemove')
 
-  constructor(private _dispositivoService: DispositivoService) {
+  constructor(private _dispositivoService: DispositivoService,
+    private _actRouter: ActivatedRoute
+  ) {
     this.observable$ = interval(1000)
 
     // this.subscription = this.mouseMove$.subscribe((evt: any) => {
@@ -39,9 +42,17 @@ export class DispositivoPage implements OnInit, OnDestroy {
 
   // unsubscribe () {
   //   this.subscription.unsubscribe()
-  // }
+  // } 
+
+  @Input()
+  id = '';
+
+  ionViewWillEnter () {
+    console.log(this._actRouter.snapshot.paramMap.get('id'))
+  }
 
   ngOnInit () {
+    console.log(this.id)
     this._dispositivoService.getDispositivos()
       .then((data) => {
         this.dispositivos = data

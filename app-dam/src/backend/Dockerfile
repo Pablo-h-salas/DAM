@@ -1,13 +1,13 @@
-FROM node:20
+FROM node:alpine
 
 RUN npm install -g nodemon
 
 WORKDIR /src/backend
 
-COPY package.json .
+COPY package.json ./
 
 RUN npm install
 
-EXPOSE 8000
+COPY index.js ./
 
-CMD ["nodemon", "index.js"]
+EXPOSE 8000
