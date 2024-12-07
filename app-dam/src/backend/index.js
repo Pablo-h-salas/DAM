@@ -1,6 +1,6 @@
 //=======[ Settings, Imports & Data ]==========================================
 
-var PORT    = 3000;
+var PORT = 3000;
 
 const cors = require('cors');
 
@@ -16,10 +16,10 @@ var corsOptions = {
 }
 
 const YOUR_SECRET_KEY = 'mi llave'
-var testUser = {username: 'test', password: '1234'}
+var testUser = { username: 'test', password: '1234' }
 
 // to parse application/json
-app.use(express.json()); 
+app.use(express.json());
 // to serve static files
 app.use(express.static('/home/node/app/static/'));
 // to enable cors
@@ -32,16 +32,16 @@ var authenticator = function (req, res, next) {
     } else {
         res.status(401).send({ message: 'Se requiere un token de tipo Bearer' })
     }
-    jwt.verify(token, YOUR_SECRET_KEY, function(err) {
-      if(err) {
-        res.status(403).send({ message: 'Token inválido' })
-      }
+    jwt.verify(token, YOUR_SECRET_KEY, function (err) {
+        if (err) {
+            res.status(403).send({ message: 'Token inválido' })
+        }
     })
     next()
 }
 
-app.use('/dispositivo', authenticator,routerDispositivo)
-
+//app.use('/dispositivo', authenticator,routerDispositivo)
+app.use('/dispositivo', routerDispositivo)
 //=======[ Main module code ]==================================================
 
 app.post('/login', (req, res) => {
@@ -66,15 +66,15 @@ app.post('/login', (req, res) => {
     }
 })
 
-app.get('/prueba', authenticator, function(req, res) {
-    res.send({message: 'Está autenticado, accede a los datos'})
+app.get('/prueba', authenticator, function (req, res) {
+    res.send({ message: 'Está autenticado, accede a los datos' })
 })
 
-app.get('/', function(req, res, next) {
-    res.send({'mensaje': 'Hola DAM'}).status(200);
+app.get('/', function (req, res, next) {
+    res.send({ 'mensaje': 'Hola DAM' }).status(200);
 });
 
-app.listen(PORT, function(req, res) {
+app.listen(PORT, function (req, res) {
     console.log("NodeJS API running correctly");
 });
 

@@ -7,6 +7,7 @@ export const authGuard: CanActivateFn = (route: ActivatedRouteSnapshot, state: R
   const _loginService = inject(LoginService)
   const _router = inject(Router)
 
+  // si no tiene token, permancer en login,sino devuelve true
   if (!_loginService.logIn) {
     _router.navigate(['/login'])
     return false

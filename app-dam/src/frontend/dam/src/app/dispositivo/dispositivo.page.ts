@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
 import { Observable, Subscription, fromEvent, interval } from 'rxjs';
 import { DispositivoService } from '../services/dispositivo.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from '@angular/router'; // proporciona informacion sobre la ruta activada
 
 @Component({
   selector: 'app-dispositivo',
@@ -47,11 +47,11 @@ export class DispositivoPage implements OnInit, OnDestroy {
   @Input()
   id = '';
 
-  ionViewWillEnter () {
+  ionViewWillEnter() {
     console.log(this._actRouter.snapshot.paramMap.get('id'))
   }
 
-  ngOnInit () {
+  ngOnInit() {
     console.log(this.id)
     this._dispositivoService.getDispositivos()
       .then((data) => {
@@ -63,7 +63,7 @@ export class DispositivoPage implements OnInit, OnDestroy {
     console.log(this.dispositivos)
   }
 
-  ngOnDestroy () {
+  ngOnDestroy() {
     // this.subscription.unsubscribe()
   }
 

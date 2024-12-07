@@ -9,8 +9,8 @@ import { Dispositivo } from '../interfaces/dispositivo';
 export class DispositivoService {
 
   constructor(private _http: HttpClient) { }
-
-  getDispositivos () {
+  //Realizar una solicitud HTTP GET a la URL .../8000/dispositivo
+  getDispositivos() {
     return firstValueFrom(this._http.get('http://localhost:8000/dispositivo'))
   }
 }
