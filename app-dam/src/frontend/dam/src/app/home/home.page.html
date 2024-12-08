@@ -1,22 +1,24 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
+  <ion-toolbar color="primary">
+    <ion-title class="header-title">
+      Bienvenido a su portal IoT
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" class="ion-padding content-bg">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
+      <ion-title size="large" class="header-title">Portal IoT</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <div id="container">
+  <div id="container" class="content-container">
+    <h2 class="welcome-message">Administre sus dispositivos IoT fácilmente</h2>
     <ion-list>
-      <ion-item>
-        <a routerLink="/dispositivos/1" routerLinkActive="active" ariaCurrentWhenActive="page">Dispositivo 1 Cocina</a>
+      <ion-item class="device-link">
+        <a routerLink="/listado-dispositivos" routerLinkActive="active" ariaCurrentWhenActive="page">Ver mis
+          dispositivos</a>
       </ion-item>
     </ion-list>
   </div>
