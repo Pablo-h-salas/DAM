@@ -9,8 +9,11 @@
   <ion-list>
     <!--<ion-item *ngFor="let dispositivo of dispositivos" (click)="verDispositivo(dispositivo.id)"> -->
     <ion-item *ngFor="let dispositivo of dispositivos">
-      {{ dispositivo.nombre }}
-      {{ dispositivo.ubicacion }}
+      <!--<a routerLink="'/dispositivos/' + dispositivo.id" routerLinkActive="active" ariaCurrentWhenActive="page">-->
+      <a routerLink="/dispositivos/{{dispositivo.dispositivoId}}" routerLinkActive="active"
+        ariaCurrentWhenActive="page">
+        {{ dispositivo.nombre }} - {{ dispositivo.ubicacion }}
+      </a>
     </ion-item>
   </ion-list>
 </ion-content>

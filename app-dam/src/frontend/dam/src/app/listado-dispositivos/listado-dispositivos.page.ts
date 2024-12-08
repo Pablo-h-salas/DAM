@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonList, IonItem, IonLabel } from '@ionic/angular/standalone';
 import { DispositivoService } from '../services/dispositivo.service';
-import { ActivatedRoute } from '@angular/router'; // proporciona informacion sobre la ruta activada
+import { ActivatedRoute, RouterModule } from '@angular/router'; // proporciona informacion sobre la ruta activada
 //import { IonItem, IonLabel, IonList } from '@ionic/angular';
 
 @Component({
@@ -11,7 +11,7 @@ import { ActivatedRoute } from '@angular/router'; // proporciona informacion sob
   templateUrl: './listado-dispositivos.page.html',
   styleUrls: ['./listado-dispositivos.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonList, IonItem, IonLabel]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonList, IonItem, IonLabel, RouterModule]
 })
 export class ListadoDispositivosPage implements OnInit {
   dispositivos: any = [];
