@@ -11,6 +11,16 @@ export class DispositivoService {
   constructor(private _http: HttpClient) { }
   //Realizar una solicitud HTTP GET a la URL .../8000/dispositivo
   getDispositivos() {
+    //firstValueFrom convierte un observable en una promesa
     return firstValueFrom(this._http.get('http://localhost:8000/dispositivo'))
   }
+
+  //getDispositivoPorId(id: any) {
+  //  return firstValueFrom(this._http.get(`http://localhost:8000/dispositivo/${dispositivoId}`));
+  //}
+
+  getDispositivoPorId(id: any) {
+    return firstValueFrom(this._http.get<any>(`http://localhost:8000/dispositivo/${id}`));
+  }
+
 }

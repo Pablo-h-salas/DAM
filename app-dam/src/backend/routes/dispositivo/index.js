@@ -1,17 +1,35 @@
 const express = require('express')
-
+// crea una ruta especifica para manejar las rutas relacionadas con "dispositivos"
 const routerDispositivo = express.Router()
 
 var pool = require('../../mysql-connector');
 
-routerDispositivo.get('/', function(req, res) {
-    pool.query('Select * from Dispositivos', function(err, result, fields) {
+routerDispositivo.get('/', function (req, res) {
+    pool.query('Select * from Dispositivos', function (err, result, fields) {
+        // EN caso de error, el servidor responde HTTP 400
         if (err) {
             res.send(err).status(400);
             return;
         }
+        // Consulta exitosa, devuelve el resultado en formato JSON
         res.send(result);
     });
 })
 
+routerDispositivo.get('/:id', function (req, res) {
+    const dispositivoId = req.params.id; // Obtenemos el ID de los parámetros de la URL
+    pool.query('SELECT * FROM Dispositivos WHERE dispositivoId = ?', [dispositivoId], function (err, result) {
+        if (err) {
+            res.send(err).status(400);
+            return;
+        }
+        if (result.length === 0) {
+            res.status(404).send({ error: 'Dispositivo no encontrado' });
+            return;
+        }
+        res.send(result[0]); // Devolver solo el primer resultado
+    });
+});
+
+// Exportacion del router
 module.exports = routerDispositivo

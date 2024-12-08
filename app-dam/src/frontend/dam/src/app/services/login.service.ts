@@ -12,9 +12,11 @@ export class LoginService {
 
   constructor(private _http: HttpClient, private _router: Router) { }
 
-  async login (username: string, password: string) {
+  // metodo login: hace una solicitud HTTP POST al endpoint  localhost:8000/login
+
+  async login(username: string, password: string) {
     let response = await firstValueFrom(this._http.post<any>(
-      this.uri + '/login', {username: username, password: password}
+      this.uri + '/login', { username: username, password: password }
     ))
     if (response !== null) {
       this._router.navigate(['/home'])
@@ -22,11 +24,11 @@ export class LoginService {
     }
   }
 
-  logout () {
+  logout() {
     localStorage.removeItem('token')
   }
 
-  public get logIn (): boolean {
+  public get logIn(): boolean {
     return (localStorage.getItem('token') !== null)
   }
 }

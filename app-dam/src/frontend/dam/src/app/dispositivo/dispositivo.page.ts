@@ -1,7 +1,7 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonText } from '@ionic/angular/standalone';
 import { Observable, Subscription, fromEvent, interval } from 'rxjs';
 import { DispositivoService } from '../services/dispositivo.service';
 import { ActivatedRoute } from '@angular/router'; // proporciona informacion sobre la ruta activada
@@ -11,13 +11,14 @@ import { ActivatedRoute } from '@angular/router'; // proporciona informacion sob
   templateUrl: './dispositivo.page.html',
   styleUrls: ['./dispositivo.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonText]
 })
-export class DispositivoPage implements OnInit, OnDestroy {
+//export class DispositivoPage implements OnInit, OnDestroy {
+export class DispositivoPage implements OnInit {
 
   observable$: Observable<any>
   dispositivos: any = []
-  // subscription: Subscription
+  //subscription: Subscription
 
   mouseMove$ = fromEvent(document, 'mousemove')
 
@@ -53,9 +54,10 @@ export class DispositivoPage implements OnInit, OnDestroy {
 
   ngOnInit() {
     console.log(this.id)
-    this._dispositivoService.getDispositivos()
+    //this._dispositivoService.getDispositivos()
+    this._dispositivoService.getDispositivoPorId(Number(this.id))
       .then((data) => {
-        this.dispositivos = data
+        this.dispositivos = data // Se guarda la informacion 
       })
       .catch((error) => {
         console.log(error)
@@ -63,8 +65,8 @@ export class DispositivoPage implements OnInit, OnDestroy {
     console.log(this.dispositivos)
   }
 
-  ngOnDestroy() {
-    // this.subscription.unsubscribe()
-  }
+  //ngOnDestroy() {
+  //  this.subscription.unsubscribe()
+  //}
 
 }

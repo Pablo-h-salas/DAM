@@ -1,6 +1,6 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>dispositivo</ion-title>
+    <ion-title>Detalles del dispositivo</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -12,4 +12,24 @@
   </ion-header>
   <!-- <button (click)="subscribe()">Subscribe</button>
   <button (click)="unsubscribe()">Unsubscribe</button> -->
+</ion-content>
+
+<ion-content>
+  <div *ngIf="dispositivos">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>{{ dispositivos.nombre }}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p><strong>Ubicación:</strong> {{ dispositivos.ubicacion }}</p>
+        <p><strong>Electrovalvula ID:</strong> {{ dispositivos.electrovalvulaId }}</p>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <div *ngIf="!dispositivos">
+    <ion-text>
+      <h2>Cargando dispositivo...</h2>
+    </ion-text>
+  </div>
 </ion-content>
