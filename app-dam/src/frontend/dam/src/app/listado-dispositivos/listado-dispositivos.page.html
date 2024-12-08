@@ -1,18 +1,22 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>listado de dispositivos</ion-title>
+  <ion-toolbar color="tertiary">
+    <ion-title class="header-title">Listado de dispositivos</ion-title>
   </ion-toolbar>
 </ion-header>
 
 
-<ion-content>
-  <ion-list>
-    <!--<ion-item *ngFor="let dispositivo of dispositivos" (click)="verDispositivo(dispositivo.id)"> -->
-    <ion-item *ngFor="let dispositivo of dispositivos">
-      <a routerLink="/dispositivos/{{dispositivo.dispositivoId}}" routerLinkActive="active"
-        ariaCurrentWhenActive="page">
-        {{ dispositivo.nombre }} - {{ dispositivo.ubicacion }}
-      </a>
-    </ion-item>
-  </ion-list>
+<ion-content class="ion-padding content-bg">
+  <div class="list-container">
+    <h2 class="list-title">Seleccione un dispositivo para más detalles</h2>
+    <ion-list>
+      <ion-item *ngFor="let dispositivo of dispositivos" class="device-item ion-activatable ripple-parent">
+        <ion-icon slot="start" name="hardware-chip-outline" color="primary"></ion-icon>
+        <a routerLink="/dispositivos/{{dispositivo.dispositivoId}}" routerLinkActive="active"
+          ariaCurrentWhenActive="page" class="custom-link">
+          {{ dispositivo.nombre }} - {{ dispositivo.ubicacion }}
+        </a>
+        <ion-ripple-effect></ion-ripple-effect>
+      </ion-item>
+    </ion-list>
+  </div>
 </ion-content>
