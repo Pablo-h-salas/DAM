@@ -8,6 +8,8 @@ import {
 } from '@ionic/angular/standalone';
 import { Observable, Subscription, fromEvent, interval } from 'rxjs';
 import { DispositivoService } from '../services/dispositivo.service';
+import { MedicionesService } from '../services/mediciones.service';
+import { LogRiegosService } from '../services/log-riegos.service';
 import { ActivatedRoute } from '@angular/router'; // proporciona informacion sobre la ruta activada
 
 
@@ -32,6 +34,8 @@ export class DispositivoPage implements OnInit {
   mouseMove$ = fromEvent(document, 'mousemove')
 
   constructor(private _dispositivoService: DispositivoService,
+    private _medicionesDispositivo: MedicionesService,
+    private _logRiegosService: LogRiegosService,
     private _actRouter: ActivatedRoute
   ) {
     this.observable$ = interval(1000)
@@ -80,12 +84,12 @@ export class DispositivoPage implements OnInit {
   accionarElectrovalvula(electrovalvulaId: any, estado: any) {
     console.log('accionarElectrovalvula ejecutada');
     const apertura = estado ? 1 : 0; // Convertimos el estado del toggle a apertura (1 = ON, 0 = OFF)
-    this._dispositivoService.insertarLogRiego(apertura, electrovalvulaId)
+    this._logRiegosService.insertarLogRiego(apertura, electrovalvulaId)
 
     // Este es el ultimo valor de humedad
     this.valorRandom = Math.floor(Math.random() * 101);
     // Llamar a funcion para que haga el POST en Mediciones
-    this._dispositivoService.insertarMedicion(this.id, this.valorRandom)
+    this._medicionesDispositivo.insertarMedicion(this.id, this.valorRandom)
 
   }
 

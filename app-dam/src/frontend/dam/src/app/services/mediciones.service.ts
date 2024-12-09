@@ -10,7 +10,16 @@ export class MedicionesService {
 
   constructor(private _http: HttpClient) { }
 
-  postMediciones() {
-
+  // Metodo para obtener las mediciones de un dispositivo
+  getMedicionesPorId(id: any) {
+    return firstValueFrom(this._http.get<any>(`http://localhost:8000/dispositivo/${id}/mediciones`));
   }
+
+  // Método para insertar una medición
+  insertarMedicion(dispositivoId: any, valor: any) {
+    const body = { dispositivoId, valor };
+    return firstValueFrom(this._http.post('http://localhost:8000/dispositivo/mediciones', body));
+  }
+
+
 }

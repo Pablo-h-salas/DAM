@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonList, IonItem, IonLabel } from '@ionic/angular/standalone';
-import { DispositivoService } from '../services/dispositivo.service';
+import { MedicionesService } from '../services/mediciones.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -17,7 +17,8 @@ export class MedicionesPage implements OnInit {
 
   mediciones: any = []
 
-  constructor(private _dispositivoService: DispositivoService,
+  constructor(
+    private _medicionesService: MedicionesService,
     private _actRouter: ActivatedRoute
   ) { }
 
@@ -26,7 +27,7 @@ export class MedicionesPage implements OnInit {
 
   ngOnInit() {
 
-    this._dispositivoService.getMedicionesPorId(Number(this.id))
+    this._medicionesService.getMedicionesPorId(Number(this.id))
       .then((data) => {
         console.log(data);
         this.mediciones = data // Se guarda la informacion 
