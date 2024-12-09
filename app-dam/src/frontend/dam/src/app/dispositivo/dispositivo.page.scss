@@ -76,3 +76,32 @@ ion-card {
     background-color: #ffffff;
     border-radius: 12px;
 }
+
+.toggle-container .custom-link {
+    display: block;
+    margin-top: 8px;
+    /* Ajusta el espacio según sea necesario */
+}
+
+.custom-button {
+    background-color: #007bff;
+    /* Color del botón */
+    color: white;
+    /* Color del texto */
+    border: none;
+    /* Sin borde */
+    padding: 10px 20px;
+    /* Espaciado interno */
+    border-radius: 5px;
+    /* Esquinas redondeadas */
+    cursor: pointer;
+    /* Cambia el cursor al pasar sobre el botón */
+    font-size: 13px;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.custom-button:hover {
+    background-color: #0056b3;
+    /* Color más oscuro al pasar el mouse */
+}

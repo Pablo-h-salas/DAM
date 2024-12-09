@@ -24,10 +24,12 @@
           <ion-toggle [(ngModel)]="estadoRiego"
             (ionChange)="accionarElectrovalvula(dispositivos.electrovalvulaId, estadoRiego)">
           </ion-toggle>
-          <a routerLink="/dispositivos/{{dispositivos.dispositivoId}}/mediciones" routerLinkActive="active"
-            ariaCurrentWhenActive="page" class="custom-link">
+        </div>
+        <div>
+          <button class="custom-button" routerLink="/dispositivos/{{dispositivos.dispositivoId}}/mediciones"
+            routerLinkActive="active" ariaCurrentWhenActive="page">
             ver mediciones de {{ dispositivos.nombre }}
-          </a>
+          </button>
         </div>
       </ion-card-content>
     </ion-card>
