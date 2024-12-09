@@ -24,6 +24,11 @@
         <p><strong>Ubicación:</strong> {{ dispositivos.ubicacion }}</p>
         <p><strong>Electrovalvula ID:</strong> {{ dispositivos.electrovalvulaId }}</p>
         <p><strong>Humedad:</strong> {{valorRandom }}</p>
+        <p><strong>Riego:</strong></p>
+        <!-- Toggle para activar/desactivar el riego -->
+        <ion-toggle [(ngModel)]="estadoRiego"
+          (ionChange)="accionarElectrovalvula(dispositivos.electrovalvulaId, estadoRiego)">
+        </ion-toggle>
       </ion-card-content>
     </ion-card>
   </div>

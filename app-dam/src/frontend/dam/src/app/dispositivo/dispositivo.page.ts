@@ -1,7 +1,7 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonText } from '@ionic/angular/standalone';
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonText, IonToggle } from '@ionic/angular/standalone';
 import { Observable, Subscription, fromEvent, interval } from 'rxjs';
 import { DispositivoService } from '../services/dispositivo.service';
 import { ActivatedRoute } from '@angular/router'; // proporciona informacion sobre la ruta activada
@@ -11,7 +11,7 @@ import { ActivatedRoute } from '@angular/router'; // proporciona informacion sob
   templateUrl: './dispositivo.page.html',
   styleUrls: ['./dispositivo.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonText]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonText, IonToggle]
 })
 //export class DispositivoPage implements OnInit, OnDestroy {
 export class DispositivoPage implements OnInit {
@@ -19,6 +19,7 @@ export class DispositivoPage implements OnInit {
   observable$: Observable<any>
   dispositivos: any = []
   valorRandom: number = 0;
+  estadoRiego: boolean = false;
   //subscription: Subscription
 
   mouseMove$ = fromEvent(document, 'mousemove')
@@ -71,7 +72,11 @@ export class DispositivoPage implements OnInit {
     this._dispositivoService.insertarMedicion(this.id, this.valorRandom)
   }
 
-
+  accionarElectrovalvula(electrovalvulaId: any, estado: any) {
+    console.log('accionarElectrovalvula ejecutada');
+    const apertura = estado ? 1 : 0; // Convertimos el estado del toggle a apertura (1 = ON, 0 = OFF)
+    this._dispositivoService.insertarLogRiego(apertura, electrovalvulaId)
+  }
 
 
 

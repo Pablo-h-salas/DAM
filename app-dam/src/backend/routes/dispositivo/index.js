@@ -46,5 +46,24 @@ routerDispositivo.post('/mediciones', function (req, res) {
     });
 });
 
+// Ruta para insertar los registros de riego
+routerDispositivo.post('/log_riegos', function (req, res) {
+    const { apertura, electrovalvulaId } = req.body;
+    const fecha = new Date().toISOString().slice(0, 19).replace('T', ' '); // Fecha actual en formato MySQL
+
+    const query = 'INSERT INTO Log_Riegos (apertura, fecha, electrovalvulaId) VALUES (?, ?, ?)';
+    pool.query(query, [apertura, fecha, electrovalvulaId], function (err, result) {
+        if (err) {
+            res.status(400).send(err); // Enviar error en caso de problemas
+            return;
+        }
+        res.status(200).send({
+            message: 'Log de riego insertado correctamente',
+            id: result.insertId, // El ID generado automáticamente
+        });
+    });
+});
+
+
 // Exportacion del router
 module.exports = routerDispositivo

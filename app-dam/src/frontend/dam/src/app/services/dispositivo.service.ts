@@ -30,4 +30,10 @@ export class DispositivoService {
     return firstValueFrom(this._http.post('http://localhost:8000/dispositivo/mediciones', body));
   }
 
+  //Metodo pra insertar registro de riegos
+  insertarLogRiego(apertura: any, electrovalvulaId: any) {
+    const body = { apertura, electrovalvulaId };
+    return firstValueFrom(this._http.post('http://localhost:8000/dispositivo/log_riegos', body));
+  }
+
 }
