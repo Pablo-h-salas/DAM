@@ -1,17 +1,24 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonText, IonToggle } from '@ionic/angular/standalone';
+import {
+  IonContent, IonHeader, IonTitle, IonToolbar, IonCard, IonCardHeader, IonCardTitle,
+  IonCardContent, IonText, IonToggle, IonIcon
+} from '@ionic/angular/standalone';
 import { Observable, Subscription, fromEvent, interval } from 'rxjs';
 import { DispositivoService } from '../services/dispositivo.service';
 import { ActivatedRoute } from '@angular/router'; // proporciona informacion sobre la ruta activada
+
 
 @Component({
   selector: 'app-dispositivo',
   templateUrl: './dispositivo.page.html',
   styleUrls: ['./dispositivo.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonText, IonToggle]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule,
+    IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonText, IonToggle,
+    RouterModule, IonIcon]
 })
 //export class DispositivoPage implements OnInit, OnDestroy {
 export class DispositivoPage implements OnInit {
@@ -55,7 +62,6 @@ export class DispositivoPage implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.id)
     //this._dispositivoService.getDispositivos()
     this._dispositivoService.getDispositivoPorId(Number(this.id))
       .then((data) => {
@@ -64,18 +70,23 @@ export class DispositivoPage implements OnInit {
       .catch((error) => {
         console.log(error)
       })
-    console.log(this.dispositivos)
 
     // Este es el ultimo valor de humedad
-    this.valorRandom = Math.floor(Math.random() * 101);
+    //this.valorRandom = Math.floor(Math.random() * 101);
     // Llamar a funcion para que haga el POST en Mediciones
-    this._dispositivoService.insertarMedicion(this.id, this.valorRandom)
+    //this._dispositivoService.insertarMedicion(this.id, this.valorRandom)
   }
 
   accionarElectrovalvula(electrovalvulaId: any, estado: any) {
     console.log('accionarElectrovalvula ejecutada');
     const apertura = estado ? 1 : 0; // Convertimos el estado del toggle a apertura (1 = ON, 0 = OFF)
     this._dispositivoService.insertarLogRiego(apertura, electrovalvulaId)
+
+    // Este es el ultimo valor de humedad
+    this.valorRandom = Math.floor(Math.random() * 101);
+    // Llamar a funcion para que haga el POST en Mediciones
+    this._dispositivoService.insertarMedicion(this.id, this.valorRandom)
+
   }
 
 

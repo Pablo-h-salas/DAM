@@ -1,0 +1,42 @@
+ion-header {
+    --background: #3880ff;
+    /* Color de fondo del encabezado */
+    --color: white;
+    /* Color del texto */
+}
+
+ion-toolbar {
+    --background: #3880ff;
+    --color: white;
+}
+
+ion-title {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+ion-content {
+    --background: #f4f5f8;
+    /* Fondo del contenido */
+}
+
+ion-item {
+    --background: white;
+    --border-color: #dcdde1;
+    --padding-start: 16px;
+    --padding-end: 16px;
+    margin: 10px 0;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+ion-label h2 {
+    font-size: 1.2rem;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+ion-label p {
+    font-size: 1rem;
+    color: #666;
+}

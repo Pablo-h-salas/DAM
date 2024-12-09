@@ -4,6 +4,20 @@ const routerDispositivo = express.Router()
 
 var pool = require('../../mysql-connector');
 
+routerDispositivo.get('/:id/mediciones', function (req, res) {
+    const dispositivoId = req.params.id; // Obtenemos el ID de los parámetros de la URL
+    pool.query('SELECT * FROM Mediciones WHERE dispositivoId = ?', [dispositivoId], function (err, result) {
+        if (err) {
+            res.send(err).status(400);
+            return;
+        }
+        if (result.length === 0) {
+            res.status(404).send({ error: 'Dispositivo no encontrado' });
+            return;
+        }
+        res.send(result);
+    });
+});
 
 routerDispositivo.get('/:id', function (req, res) {
     const dispositivoId = req.params.id; // Obtenemos el ID de los parámetros de la URL
@@ -16,9 +30,10 @@ routerDispositivo.get('/:id', function (req, res) {
             res.status(404).send({ error: 'Dispositivo no encontrado' });
             return;
         }
-        res.send(result[0]); // Devolver solo el primer resultado
+        res.send(result[0]);
     });
 });
+
 
 routerDispositivo.get('/', function (req, res) {
     pool.query('Select * from Dispositivos', function (err, result, fields) {

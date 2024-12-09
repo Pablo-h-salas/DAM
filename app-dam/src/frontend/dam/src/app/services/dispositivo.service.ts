@@ -16,9 +16,11 @@ export class DispositivoService {
     return firstValueFrom(this._http.get('http://localhost:8000/dispositivo'))
   }
 
-  //getDispositivoPorId(id: any) {
-  //  return firstValueFrom(this._http.get(`http://localhost:8000/dispositivo/${dispositivoId}`));
-  //}
+  // Metodo para obtener las mediciones de un dispositivo
+  getMedicionesPorId(id: any) {
+    return firstValueFrom(this._http.get<any>(`http://localhost:8000/dispositivo/${id}/mediciones`));
+  }
+
 
   getDispositivoPorId(id: any) {
     return firstValueFrom(this._http.get<any>(`http://localhost:8000/dispositivo/${id}`));

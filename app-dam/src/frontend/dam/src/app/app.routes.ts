@@ -27,11 +27,15 @@ export const routes: Routes = [
     //canActivate: [authGuard]
   },
   {
+    path: 'dispositivos/:id/mediciones',
+    loadComponent: () => import('./mediciones/mediciones.page').then(m => m.MedicionesPage),
+  },
+  {
     path: 'listado-dispositivos',
     loadComponent: () => import('./listado-dispositivos/listado-dispositivos.page').then(m => m.ListadoDispositivosPage),
   },
   {
     path: 'mediciones',
-    loadComponent: () => import('./mediciones/mediciones.page').then( m => m.MedicionesPage)
+    loadComponent: () => import('./mediciones/mediciones.page').then(m => m.MedicionesPage)
   }
 ];
