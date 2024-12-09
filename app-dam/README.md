@@ -29,6 +29,10 @@ Si pudiste acceder al cliente web y al administrador significa que la aplicació
 
 > Si te aparece un error la primera vez que corres la app, deteńe el proceso y volvé a iniciarla. Esto es debido a que el backend espera que la DB esté creada al iniciar, y en la primera ejecución puede no alcanzar a crearse. A partir de la segunda vez el problema queda solucionado.
 
+### Interactuar con las paginas del proyecto
+Una vez escrito http://localhost:8100/ nos encontramos el pagina HOME, alli se podra ver la opcion de ver los dispositivos disponibles. Esto nos redirige a la pagina http://localhost:8100/listado-dispositivos. Aqui veremos todos los dispositivos que se encuentran en la tabla dispositivos de la base de datos, se puede seleccionar sobre cada uno de ellos. 
+Al seleccionar un dispositico nos redirige a una pagina como: http://localhost:8100/dispositivos/4. El numero al final de la URL representa el id del dispositivo seleccionado. En esta pagina hay un "button" que nos permite visualizar el historico de mediciones, llevandonos a una ruta del tipo http://localhost:8100/dispositivos/4/mediciones.
+
 ## Licencia 📄
 
 Este proyecto está bajo Licencia ([MIT](https://choosealicense.com/licenses/mit/)). Podés ver el archivo [LICENSE.md](LICENSE.md) para más detalles sobre el uso de este material.
