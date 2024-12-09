@@ -18,6 +18,7 @@ export class DispositivoPage implements OnInit {
 
   observable$: Observable<any>
   dispositivos: any = []
+  valorRandom: number = 0;
   //subscription: Subscription
 
   mouseMove$ = fromEvent(document, 'mousemove')
@@ -63,7 +64,16 @@ export class DispositivoPage implements OnInit {
         console.log(error)
       })
     console.log(this.dispositivos)
+
+    // Este es el ultimo valor de humedad
+    this.valorRandom = Math.floor(Math.random() * 101);
+    // Llamar a funcion para que haga el POST en Mediciones
+    this._dispositivoService.insertarMedicion(this.id, this.valorRandom)
   }
+
+
+
+
 
   //ngOnDestroy() {
   //  this.subscription.unsubscribe()

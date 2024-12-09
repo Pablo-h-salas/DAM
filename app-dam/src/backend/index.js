@@ -40,7 +40,7 @@ var authenticator = function (req, res, next) {
     next()
 }
 
-//app.use('/dispositivo', authenticator,routerDispositivo)
+
 // Middleware para montar un conjunto de rutas bajo el prefijo /dispositivo
 app.use('/dispositivo', routerDispositivo)
 //=======[ Main module code ]==================================================
@@ -78,5 +78,6 @@ app.get('/', function (req, res, next) {
 app.listen(PORT, function (req, res) {
     console.log("NodeJS API running correctly");
 });
+
 
 //=======[ End of file ]=======================================================

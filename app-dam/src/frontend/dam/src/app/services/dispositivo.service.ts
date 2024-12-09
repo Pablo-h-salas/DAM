@@ -9,6 +9,7 @@ import { Dispositivo } from '../interfaces/dispositivo';
 export class DispositivoService {
 
   constructor(private _http: HttpClient) { }
+
   //Realizar una solicitud HTTP GET a la URL .../8000/dispositivo
   getDispositivos() {
     //firstValueFrom convierte un observable en una promesa
@@ -21,6 +22,12 @@ export class DispositivoService {
 
   getDispositivoPorId(id: any) {
     return firstValueFrom(this._http.get<any>(`http://localhost:8000/dispositivo/${id}`));
+  }
+
+  // Método para insertar una medición
+  insertarMedicion(dispositivoId: any, valor: any) {
+    const body = { dispositivoId, valor };
+    return firstValueFrom(this._http.post('http://localhost:8000/dispositivo/mediciones', body));
   }
 
 }

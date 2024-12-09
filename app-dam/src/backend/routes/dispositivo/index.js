@@ -4,17 +4,6 @@ const routerDispositivo = express.Router()
 
 var pool = require('../../mysql-connector');
 
-routerDispositivo.get('/', function (req, res) {
-    pool.query('Select * from Dispositivos', function (err, result, fields) {
-        // EN caso de error, el servidor responde HTTP 400
-        if (err) {
-            res.send(err).status(400);
-            return;
-        }
-        // Consulta exitosa, devuelve el resultado en formato JSON
-        res.send(result);
-    });
-})
 
 routerDispositivo.get('/:id', function (req, res) {
     const dispositivoId = req.params.id; // Obtenemos el ID de los parámetros de la URL
@@ -28,6 +17,32 @@ routerDispositivo.get('/:id', function (req, res) {
             return;
         }
         res.send(result[0]); // Devolver solo el primer resultado
+    });
+});
+
+routerDispositivo.get('/', function (req, res) {
+    pool.query('Select * from Dispositivos', function (err, result, fields) {
+        // EN caso de error, el servidor responde HTTP 400
+        if (err) {
+            res.send(err).status(400);
+            return;
+        }
+        // Consulta exitosa, devuelve el resultado en formato JSON
+        res.send(result);
+    });
+});
+
+// Ruta para insertar una nueva medición
+routerDispositivo.post('/mediciones', function (req, res) {
+    const { dispositivoId, valor } = req.body; // Obtenemos dispositivoId y el valor (humedad)
+    const fecha = new Date().toISOString().slice(0, 19).replace('T', ' '); // Fecha actual en formato YYYY-MM-DD HH:MM:SS
+    const query = 'INSERT INTO Mediciones (fecha, valor, dispositivoId) VALUES (?, ?, ?)';
+    pool.query(query, [fecha, valor, dispositivoId], function (err, result) {
+        if (err) {
+            res.status(400).send(err); // En caso de error
+            return;
+        }
+        res.status(200).send({ message: 'Medición insertada correctamente', id: result.insertId });
     });
 });
 
