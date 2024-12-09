@@ -9,7 +9,7 @@
   <div *ngIf="dispositivos">
     <ion-card class="device-card">
       <ion-card-header>
-        <ion-card-title class="card-title">{{ dispositivos.nombre }}</ion-card-title>
+        <ion-card-title class="card-title">{{ dispositivos.nombre | uppercase}}</ion-card-title>
       </ion-card-header>
 
       <ion-card-content>

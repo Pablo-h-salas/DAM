@@ -13,7 +13,7 @@
         <ion-icon slot="start" name="hardware-chip-outline" color="primary"></ion-icon>
         <a routerLink="/dispositivos/{{dispositivo.dispositivoId}}" routerLinkActive="active"
           ariaCurrentWhenActive="page" class="custom-link">
-          {{ dispositivo.nombre }} - {{ dispositivo.ubicacion }}
+          {{ dispositivo.nombre | uppercase}} - {{ dispositivo.ubicacion }}
         </a>
         <ion-ripple-effect></ion-ripple-effect>
       </ion-item>
