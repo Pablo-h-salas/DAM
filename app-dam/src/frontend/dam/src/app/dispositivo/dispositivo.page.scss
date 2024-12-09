@@ -1,14 +1,14 @@
-/* Estilos globales */
+/* Estilos generales */
 ion-header {
-    --background: #f1f1f1;
-    /* Color de fondo más claro */
-    --color: #4CAF50;
-    /* Color del texto del título */
+    --background: #4CAF50;
+    /* Verde intenso */
+    --color: #ffffff;
+    /* Texto blanco */
 }
 
 ion-toolbar {
-    --background: #4CAF50;
-    /* Color verde en la barra */
+    --background: #388E3C;
+    /* Verde más oscuro para la barra */
 }
 
 ion-title {
@@ -18,54 +18,61 @@ ion-title {
 }
 
 .device-card {
-    margin: 16px;
+    width: 30%;
+    /* Mantengo el ancho ajustado como lo querías */
+    margin: 10px auto;
+    margin-top: 40px;
+    /* Márgenes ajustados, mantengo el margen superior de 20px */
+    padding: 20px;
     border-radius: 12px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    background-color: #ffffff;
+    /* Bordes redondeados más suaves */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    /* Sombra más prominente */
+    background-color: #fafafa;
+    /* Fondo muy suave, gris claro */
 }
 
 .card-title {
-    font-size: 1.5em;
+    font-size: 1.4em;
+    /* Título un poco más grande */
     font-weight: bold;
-    color: #4CAF50;
+    color: #388E3C;
+    /* Verde oscuro */
     text-align: center;
-    margin-bottom: 10px;
 }
 
 .device-info p {
-    font-size: 1.1em;
-    margin-bottom: 10px;
+    font-size: 1em;
+    color: #333333;
+    /* Texto oscuro para mayor legibilidad */
+    margin-bottom: 12px;
+    /* Más espacio entre párrafos */
 }
 
 .toggle-container {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-top: 20px;
-    padding: 10px 0;
+    margin-top: 15px;
 }
 
-.toggle-container ion-toggle {
-    --handle-background: #4CAF50;
-    /* Color verde en el toggle */
-    --border-radius: 20px;
-    /* Bordes redondeados */
+/* Cambios en el ion-toggle para darle estilo */
+ion-toggle {
+    --ion-color-checked: #4CAF50;
+    /* Verde brillante para cuando está activado */
+    --ion-color-off: #F44336;
+    /* Rojo para cuando está desactivado */
 }
 
-ion-text h2 {
-    font-size: 1.2em;
-    text-align: center;
-    color: #4CAF50;
-    font-weight: bold;
+/* Fondo del contenido */
+ion-content {
+    --background: #e0f7fa;
+    /* Fondo azul suave */
 }
 
-ion-card-content {
-    padding: 20px;
-}
-
-/* Animación de carga */
-ion-text h2 {
-    font-size: 1.2em;
-    color: #9e9e9e;
-    font-style: italic;
+/* Añadir sombra ligera a las tarjetas */
+ion-card {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    border-radius: 12px;
 }

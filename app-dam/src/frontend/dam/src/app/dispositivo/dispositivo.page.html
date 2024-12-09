@@ -4,31 +4,27 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">dispositivo</ion-title>
-    </ion-toolbar>
-  </ion-header>
-  <!-- <button (click)="subscribe()">Subscribe</button>
-  <button (click)="unsubscribe()">Unsubscribe</button> -->
-</ion-content>
 
 <ion-content>
   <div *ngIf="dispositivos">
-    <ion-card>
+    <ion-card class="device-card">
       <ion-card-header>
-        <ion-card-title>{{ dispositivos.nombre }}</ion-card-title>
+        <ion-card-title class="card-title">{{ dispositivos.nombre }}</ion-card-title>
       </ion-card-header>
+
       <ion-card-content>
-        <p><strong>Ubicación:</strong> {{ dispositivos.ubicacion }}</p>
-        <p><strong>Electrovalvula ID:</strong> {{ dispositivos.electrovalvulaId }}</p>
-        <p><strong>Humedad:</strong> {{valorRandom }}</p>
-        <p><strong>Riego:</strong></p>
-        <!-- Toggle para activar/desactivar el riego -->
-        <ion-toggle [(ngModel)]="estadoRiego"
-          (ionChange)="accionarElectrovalvula(dispositivos.electrovalvulaId, estadoRiego)">
-        </ion-toggle>
+        <div class="device-info">
+          <p><strong>Ubicación:</strong> {{ dispositivos.ubicacion }}</p>
+          <p><strong>Electrovalvula ID:</strong> {{ dispositivos.electrovalvulaId }}</p>
+          <p><strong>Humedad:</strong> {{valorRandom }}</p>
+        </div>
+        <div class="toggle-container">
+          <p><strong>Riego:</strong></p>
+          <!-- Toggle para activar/desactivar el riego -->
+          <ion-toggle [(ngModel)]="estadoRiego"
+            (ionChange)="accionarElectrovalvula(dispositivos.electrovalvulaId, estadoRiego)">
+          </ion-toggle>
+        </div>
       </ion-card-content>
     </ion-card>
   </div>
